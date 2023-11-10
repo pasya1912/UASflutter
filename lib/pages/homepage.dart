@@ -60,15 +60,30 @@ class _HomePageState extends State<HomePage> {
           indent: 5,
           endIndent: 5,
         ),
-        MacamAlat(namaAlat: "Flat Bench Press", otot: const ["Dada", "Trisep"]),
-        MacamAlat(
-            namaAlat: "Incline Bench Press",
-            otot: const ["Dada Atas", "Trisep"]),
-        MacamAlat(
-            namaAlat: "Decline Bench Press",
-            otot: const ["Dada Bawah", "Trisep"]),
-        MacamAlat(namaAlat: "Cable Row", otot: const ["Punggung", "Bisep"]),
-        MacamAlat(namaAlat: "Lat Pulldown", otot: const ["Punggung", "Bisep"]),
+        Column(
+          children: [
+            MacamAlat(
+                namaAlat: "Flat Bench",
+                otot: const ["Dada", "Trisep"],
+                image: "assets/images/alat/flatbench.jpg"),
+            MacamAlat(
+                namaAlat: "Incline Bench",
+                otot: const ["Dada Atas", "Trisep"],
+                image: "assets/images/alat/inclinebench.webp"),
+            MacamAlat(
+                namaAlat: "Decline Bench",
+                otot: const ["Dada Bawah", "Trisep"],
+                image: "assets/images/alat/declinebench.jpg"),
+            MacamAlat(
+                namaAlat: "Cable Crossover",
+                otot: const ["Punggung", "Bisep"],
+                image: "assets/images/alat/cablecrossover.webp"),
+            MacamAlat(
+                namaAlat: "Lat Pulldown",
+                otot: const ["Punggung", "Bisep"],
+                image: "assets/images/alat/latpulldown.webp"),
+          ],
+        ),
       ]),
     );
   }
@@ -92,54 +107,94 @@ class _HomePageState extends State<HomePage> {
       ]);
 }
 
-
-
 class MacamAlat extends StatelessWidget {
   final String namaAlat;
   final List<String> otot;
+  final String? image;
 
-  MacamAlat({required this.namaAlat, required this.otot, Key? key})
+  MacamAlat({required this.namaAlat, required this.otot, this.image, Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     final String ototJoined = otot.join(', ');
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            height: 50,
-            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 211, 211, 211),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Text(
-                    "$namaAlat",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+    return GestureDetector(
+      onTap: () {
+        // Handle tap event here, for example, show an image using a dialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Container(
+                width: double.infinity,
+                height: 400,
+                child: ListView(
+                  children: [Column(children: [
+                    if (image != null) ...[
+                       SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: Image.asset(image!,fit: BoxFit.cover,),
+                      ),
+                    ] else ...[
+                       SizedBox(
+                        width:0,
+                        height: 0,
+                        child: Image.asset('assets/images/$namaAlat.png')),
+                    ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Column(
+                        children: [
+                          Row(children: [Text(namaAlat)]),
+                          Row(children: [Text('Otot: $ototJoined')]),
+                        ],
+                      ),
+                    ),
+                  ]),]
+                ),
+              ),
+            );
+          },
+        );
+      },
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 211, 211, 211),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "$namaAlat",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Text(
-                    'Otot: $ototJoined',
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      'Otot: $ototJoined',
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

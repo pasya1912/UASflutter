@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: isAdmin == 1 ? const AdminHomePage() : const MyHomePage(),
+      home: isAdmin == 1 ? const MyAdmin() : const MyHomePage(),
     );
   }
 }

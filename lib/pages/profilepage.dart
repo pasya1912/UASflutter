@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gymapp/pages/homepage.dart';
 import 'package:gymapp/pages/profile/edit_alamat.dart';
+import 'package:gymapp/pages/profile/edit_ktp.dart';
 import 'package:gymapp/pages/profile/edit_nama.dart';
+import 'package:gymapp/pages/profile/edit_nomor.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -22,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(children: [
           buildUserInfoDisplay(nama, "Nama",  EditNama(nama: nama)),
           buildUserInfoDisplay(alamat, "Alamat",  EditAlamat(alamat: alamat)),
+          buildUserInfoDisplay("08123456789", "Nomor", const EditNomor(nomor: "08123456789")),
           isVerified(),
           //logout button in flutter
           TextButton(
@@ -58,13 +60,13 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget isVerified() {
+    TextStyle styling;
     if (isIdVerified == 1) {
-      return buildUserInfoDisplay("Verified", "Verifikasi ID", const HomePage(),
-          const TextStyle(color: Colors.green));
+      styling = const TextStyle(color: Colors.green);
     } else {
-      return buildUserInfoDisplay("Unverified", "Verifikasi ID",
-          const HomePage(), const TextStyle(color: Colors.red));
+      styling = const TextStyle(color: Colors.red);
     }
+      return buildUserInfoDisplay("Verified", "Verifikasi ID", const EditKTP(),styling);
   }
 
   Widget buildUserInfoDisplay(String getValue, String title, Widget editPage,

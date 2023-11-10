@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:gymapp/pages/checkin.dart';
 import 'package:gymapp/pages/homepage.dart';
 import 'package:gymapp/pages/profilepage.dart';
 import 'package:line_icons/line_icons.dart';
@@ -13,13 +14,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Check In History',
-      style: optionStyle,
-    ),
+    CheckIn(),
     HomePage(),
     ProfilePage(),
   ];
@@ -33,9 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Gym App'),
         centerTitle: true,
       ),
-      body: Center(
-        child: _widgetOptions[_selectedIndex],
-      ),
+      body:_widgetOptions[_selectedIndex],
+      
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -61,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.black,
               tabs: [
                 GButton(
-                  icon: LineIcons.history,
-                  text: 'History',
+                  icon: LineIcons.checkCircle,
+                  text: 'Latihan',
                 ),
                 GButton(
                   icon: LineIcons.home,
