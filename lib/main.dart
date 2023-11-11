@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      int isAdmin = 0;
+      int isAdmin = 1;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gym App',

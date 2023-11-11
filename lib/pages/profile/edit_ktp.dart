@@ -23,7 +23,7 @@ class _EditKTPState extends State<EditKTP> {
     //form to edit the name
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Edit Alamat'),
+          title: const Text('Edit ID/KTP'),
         ),
         body: Padding(
             //padding vertical 30 horizontal 10

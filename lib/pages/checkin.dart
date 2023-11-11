@@ -10,6 +10,7 @@ class CheckIn extends StatefulWidget {
 class _CheckInState extends State<CheckIn> {
   //array of history either checkin or checkout with the date and time
   int isCheckIn = 0;
+  int isSubscribed = 0;
   List<Map<String, String>> history = [
     {"date": "12/12/2021", "time": "12:00", "status": "checkin"},
     {"date": "12/12/2021", "time": "12:00", "status": "checkout"},
@@ -24,6 +25,57 @@ class _CheckInState extends State<CheckIn> {
     {"date": "12/12/2021", "time": "12:00", "status": "checkin"},
     {"date": "12/12/2021", "time": "12:00", "status": "checkout"}
   ];
+
+  Widget checkInButon() {
+    if (isSubscribed == 0) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Container(
+        child: Text("You are not subscribed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),))],
+      );
+    } else if(isSubscribed == 1){
+      final btn = isCheckIn == 0
+          ? TextButton(
+              onPressed: () {
+                setState(() {
+                  isCheckIn = 1;
+                  //add the checkin time  and date of current date and time to the history array
+                  history.add({
+                    "date": "12/12/2021",
+                    "time": "12:00",
+                    "status": "checkin"
+                  });
+                });
+              },
+              child: Text(
+                "Check In",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.green),
+              ),
+            )
+          : TextButton(
+              onPressed: () {
+                setState(() {
+                  isCheckIn = 0;
+                  //add the checkout time  and date of current date and time to the history array
+                  history.add({
+                    "date": "12/12/2021",
+                    "time": "12:00",
+                    "status": "checkout"
+                  });
+                });
+              },
+              child: Text(
+                "Check Out",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.red),
+              ));
+      return btn;
+    }
+    else{
+      return SizedBox(height:1);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,54 +102,20 @@ class _CheckInState extends State<CheckIn> {
       Row(children: [
         Expanded(
             child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-          //margin x = 5
-          decoration: BoxDecoration(
-            //colors from rgb 211,211,211
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                //margin x = 5
+                decoration: BoxDecoration(
+                  //colors from rgb 211,211,211
 
-            color: Color.fromARGB(148, 211, 211, 211),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          //container again with full width but margin x = 5
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: isCheckIn == 0
-              ? TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isCheckIn = 1;
-                      //add the checkin time  and date of current date and time to the history array
-                      history.add({
-                        "date": "12/12/2021",
-                        "time": "12:00",
-                        "status": "checkin"
-                      });
-                    });
-                  },
-                  child: Text(
-                    "Check In",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, color: Colors.green),
-                  ),
-                )
-              : TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isCheckIn = 0;
-                      //add the checkout time  and date of current date and time to the history array
-                      history.add({
-                        "date": "12/12/2021",
-                        "time": "12:00",
-                        "status": "checkout"
-                      });
-                    });
-                  },
-                  child: Text(
-                    "Check Out",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, color: Colors.red),
-                  )),
-        )),
+                  color: Color.fromARGB(148, 211, 211, 211),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                //container again with full width but margin x = 5
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                child: checkInButon())),
       ]),
       const Divider(
         height: 20,

@@ -59,6 +59,12 @@ class _AdminUserPageState extends State<AdminUserPage> {
                               fontSize: 12,
                               color: status == 1 ? Colors.green : Colors.red),
                         ),
+                        if (date != null) ...[
+                          Text(
+                            "($date)",
+                            style: TextStyle(fontSize: 12, color: Colors.black),
+                          ),
+                        ]
                       ],
                     ),
                   ),
@@ -82,7 +88,9 @@ class _AdminUserPageState extends State<AdminUserPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => AddMemberShip(nama: nama,)),
+                                        builder: (context) => AddMemberShip(
+                                              nama: nama,
+                                            )),
                                   );
                                 },
                                 child: Text("Add Membership"))

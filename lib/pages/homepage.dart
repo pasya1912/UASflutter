@@ -125,21 +125,19 @@ class MacamAlat extends StatelessWidget {
           builder: (BuildContext context) {
             return AlertDialog(
               content: Container(
-                width: double.infinity,
+                width: 600,
                 height: 400,
-                child: ListView(
-                  children: [Column(children: [
+                child: ListView(children: [
+                  Column(children: [
                     if (image != null) ...[
-                       SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: Image.asset(image!,fit: BoxFit.cover,),
+                      SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          image!,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ] else ...[
-                       SizedBox(
-                        width:0,
-                        height: 0,
-                        child: Image.asset('assets/images/$namaAlat.png')),
                     ],
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -150,8 +148,8 @@ class MacamAlat extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ]),]
-                ),
+                  ]),
+                ]),
               ),
             );
           },

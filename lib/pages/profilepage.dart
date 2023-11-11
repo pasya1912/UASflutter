@@ -12,7 +12,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int isIdVerified = 1;
+  int isIdVerified = 0;
   final String nama = "Rafli Pasya";
   final String alamat = "jl. metro jaya 1";
 
@@ -21,9 +21,10 @@ class _ProfilePageState extends State<ProfilePage> {
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
         child: Column(children: [
-          buildUserInfoDisplay(nama, "Nama",  EditNama(nama: nama)),
-          buildUserInfoDisplay(alamat, "Alamat",  EditAlamat(alamat: alamat)),
-          buildUserInfoDisplay("08123456789", "Nomor", const EditNomor(nomor: "08123456789")),
+          buildUserInfoDisplay(nama, "Nama", EditNama(nama: nama)),
+          buildUserInfoDisplay(alamat, "Alamat", EditAlamat(alamat: alamat)),
+          buildUserInfoDisplay(
+              "08123456789", "Nomor", const EditNomor(nomor: "08123456789")),
           isVerified(),
           //logout button in flutter
           TextButton(
@@ -61,16 +62,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget isVerified() {
     TextStyle styling;
+    Text? text;
     if (isIdVerified == 1) {
       styling = const TextStyle(color: Colors.green);
     } else {
       styling = const TextStyle(color: Colors.red);
+      text = Text("Not Verified", style: styling);
     }
-      return buildUserInfoDisplay("Verified", "Verifikasi ID", const EditKTP(),styling);
+    return buildUserInfoDisplay(
+        "", "Verifikasi ID", const EditKTP(), null, text);
   }
 
   Widget buildUserInfoDisplay(String getValue, String title, Widget editPage,
-          [final textStyling]) =>
+          [final TextStyle? textStyling, final Text? textBtn]) =>
       Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Column(
@@ -104,7 +108,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                       child: Row(children: [
-                        Expanded(child: Text(getValue, style: textStyling ?? const TextStyle(color: Colors.black))),
+                        Expanded(
+                            child: textBtn ??
+                                Text(
+                                  getValue,
+                                  style: textStyling,
+                                )),
                         const SizedBox(
                             width: 20.0,
                             height: 20.0,
