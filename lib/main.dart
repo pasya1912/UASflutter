@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gymapp/admin/home.dart';
-import 'package:gymapp/home.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:gymapp/controllers/session_controller.dart';
 
+import 'package:gymapp/user/home_page.dart';
+import 'package:gymapp/login_page.dart';
 
-void main() {
+Future<void> main() async {
+  //inisiasi getstorage
+  await GetStorage.init();
+  await dotenv.load(fileName: ".env");
+
   runApp(const MyApp());
 }
 
@@ -12,15 +20,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      int isAdmin = 1;
-    return MaterialApp(
+    //use session controller
+    final SessionController controller = Get.put(SessionController());
+
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gym App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: isAdmin == 1 ? const MyAdmin() : const MyHomePage(),
+      home: controller.checkLogin(),
     );
   }
 }
