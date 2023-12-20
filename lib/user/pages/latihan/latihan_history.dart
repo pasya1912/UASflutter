@@ -80,6 +80,8 @@ class LatihanHistory extends StatelessWidget {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
+                            }else{
+                              return Container();
                             }
                           }
                         },
