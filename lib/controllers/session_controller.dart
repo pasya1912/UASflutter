@@ -24,6 +24,7 @@ class SessionController extends GetxController {
   logout() async {
     //box remove all
     await box.erase();
+    
     Get.offAll(const LoginPage());
   }
 }

@@ -15,6 +15,7 @@ class LatihanHistoryController extends GetxController {
   final scrollController = ScrollController();
   var box = GetStorage();
   var isLoading = false.obs;
+  var isMoreDataAvailable = true.obs;
 
   final history = RxList([
     // Add your initial history items here
@@ -22,16 +23,15 @@ class LatihanHistoryController extends GetxController {
 
   @override
   void onInit() {
-
     scrollController.addListener(__scrollListener);
 
     super.onInit();
   }
 
-  void __scrollListener()async {
+  void __scrollListener() async {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-          print('get more data');
+      print('get more data');
       currentPage.value++;
       await getLatihan();
     }
@@ -39,7 +39,7 @@ class LatihanHistoryController extends GetxController {
 
   Future<void> getLatihan() async {
     isLoading.value = true;
-    if(currentPage.value == 1) {
+    if (currentPage.value == 1) {
       history.value = RxList([
         // Add your initial history items here
       ]);
@@ -71,6 +71,16 @@ class LatihanHistoryController extends GetxController {
         print("Error parsing dateTime: $e");
         // Handle parsing errors here
       }
+    }
+    if (decodedData['data']['latihan'].length > 0) {
+      isMoreDataAvailable.value = true;
+      if (decodedData['data']['latihan'].length <40 ) {
+
+      isMoreDataAvailable.value = false;
+    }
+    } 
+    else{
+      isMoreDataAvailable.value = false;
     }
   }
 }

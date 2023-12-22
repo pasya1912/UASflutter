@@ -4,9 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymapp/controllers/session_controller.dart';
 
-import 'package:gymapp/user/home_page.dart';
-import 'package:gymapp/login_page.dart';
-
 Future<void> main() async {
   //inisiasi getstorage
   await GetStorage.init();

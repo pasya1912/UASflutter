@@ -76,7 +76,7 @@ class LatihanHistory extends StatelessWidget {
                               ),
                             );
                           } else {
-                            if (controller.isLoading.value) {
+                            if (controller.isMoreDataAvailable.value || controller.isLoading.value) {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );

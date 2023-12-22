@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'package:gymapp/controllers/user/pages/dashboard_controller.dart';
 
@@ -51,12 +50,17 @@ class Dashboard extends StatelessWidget {
                               //warp the data with Obx
                               return Obx(() {
                                 //if the membership is not empty and the expiry date is after today
-                                if (controller.membership.value != '' &&
-                                    DateTime.parse(controller.membership.value)
-                                        .isAfter(DateTime.now())) {
-                                  return SubscribedBanner(
-                                      controller.membership.value);
+                                print(controller.membership.value);
+                                if (controller.membership.value != ''){
+                                  if(DateTime.tryParse(controller.membership.value)!.isAfter(DateTime.now())){
+
+                                    return SubscribedBanner(controller.membership.value);
+                                  } else {
+
+                                    return NotSubscribeBanner();
+                                  }
                                 } else {
+  
                                   return NotSubscribeBanner();
                                 }
                               });
