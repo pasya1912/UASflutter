@@ -21,7 +21,7 @@ class AddUserController extends GetxController {
 
     var result = await api.addUser(nama, nomor, alamat, password);
     var check = jsonDecode(result.body);
-    print(check);
+    
     if (check['status'] == 200) {
       adminUsersController.get();
       Get.back();

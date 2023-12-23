@@ -31,7 +31,7 @@ class LatihanHistoryController extends GetxController {
   void __scrollListener() async {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      print('get more data');
+      
       currentPage.value++;
       await getLatihan();
     }
@@ -68,7 +68,7 @@ class LatihanHistoryController extends GetxController {
         }
         isLoading.value = false;
       } catch (e) {
-        print("Error parsing dateTime: $e");
+        
         // Handle parsing errors here
       }
     }

@@ -55,7 +55,7 @@ class LatihanController extends GetxController {
           }
         }
       } catch (e) {
-        print("Error parsing dateTime: $e");
+        
         // Handle parsing errors here
       }
     }
@@ -68,7 +68,7 @@ class LatihanController extends GetxController {
     result = jsonDecode(result.body);
     var isCheckin = result['data']['latihan']['isCheckin']!;
     var dateTime = result['data']['latihan']['dateTime']!;
-    print(result);
+    
     if (isCheckin == "1") {
       isCheckIn.value = 1;
     } else if (isCheckin == "0") {

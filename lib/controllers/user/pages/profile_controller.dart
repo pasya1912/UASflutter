@@ -22,7 +22,7 @@ class ProfileController extends GetxController {
   }
 
   void getProfile() {
-    print('Get profile');
+    
     var me = box.read('me');
     if (me != null) {
       var expiredTimeString = me['expired'] as String?; // Retrieve as String
@@ -59,7 +59,7 @@ class ProfileController extends GetxController {
       nomor.value = user['nomor'];
     }).catchError((error) {
       // Handle errors if needed
-      print('Error fetching profile: $error');
+      
     });
   }
 

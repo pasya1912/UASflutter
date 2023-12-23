@@ -40,7 +40,7 @@ class Dashboard extends StatelessWidget {
                         FutureBuilder(
                           future: controller.getMembership(),
                           builder: (context, snapshot) {
-                            print("Called Snapshot");
+                            
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return const Center(
@@ -50,7 +50,7 @@ class Dashboard extends StatelessWidget {
                               //warp the data with Obx
                               return Obx(() {
                                 //if the membership is not empty and the expiry date is after today
-                                print(controller.membership.value);
+                                
                                 if (controller.membership.value != ''){
                                   if(DateTime.tryParse(controller.membership.value)!.isAfter(DateTime.now())){
 

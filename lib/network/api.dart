@@ -155,7 +155,7 @@ class Api extends GetxController {
 
     try {
       var check = jsonDecode(result.body);
-      print(check);
+      
       if (check['status'] == 200 || check['status'] == 400) {
         return result;
       } else {
@@ -249,7 +249,7 @@ class Api extends GetxController {
     var data = {
       "add_membership": hari,
     };
-    print(data);
+    
 
     var result = await post(path, data, {"Authorization": "Bearer $token"});
     try {

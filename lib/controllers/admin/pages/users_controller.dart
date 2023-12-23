@@ -45,7 +45,7 @@ class AdminUsersController extends GetxController {
   void __scrollListener() {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      print('get more data');
+      
       currentPage.value++;
       get();
     }

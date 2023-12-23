@@ -31,7 +31,7 @@ class AdminlatihanController extends GetxController {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
           if(!stillMoreData.value) return;
-          print('get more data');
+          
       currentPage.value++;
       await getLatihan();
     }
@@ -78,10 +78,10 @@ class AdminlatihanController extends GetxController {
           }
         }
         isLoading.value = false;
-            print(history.value);
+            
 
       } catch (e) {
-        print("Error parsing dateTime: $e");
+        
         // Handle parsing errors here
       }
     }

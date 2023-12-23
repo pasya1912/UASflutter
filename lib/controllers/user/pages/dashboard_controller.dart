@@ -19,9 +19,9 @@ class DashboardController extends GetxController {
       if (expiredTimeString != null) {
         var expiredTime = DateTime.tryParse(expiredTimeString);
         if (expiredTime != null && expiredTime.isAfter(DateTime.now())) {
-          print('Get membership from cache');
+          
           var meValue = me['value']!;
-          print(meValue['membership']);
+          
           //if membership not null and membership is not expired
 
           if (meValue['membership'] != null) {
@@ -36,7 +36,7 @@ class DashboardController extends GetxController {
         }
       }
     }
-    print('Get membership from api');
+    
 
     var getMe = api.me().then((response) {
       var result = jsonDecode(response.body!);
@@ -47,7 +47,7 @@ class DashboardController extends GetxController {
         'expired': expiredTime.toIso8601String(), // Convert DateTime to String
       });
       if (user['membership'] != null) {
-        print(user['membership']);
+        
         var parsedMembership = DateTime.tryParse(user['membership']);
         if (parsedMembership!.isAfter(DateTime.now())) {
           membership.value = user['membership'];

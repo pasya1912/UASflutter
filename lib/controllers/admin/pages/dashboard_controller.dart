@@ -13,10 +13,10 @@ class AdminDashboardController extends GetxController {
 
   Future getDashboard() async {
     isLoading.value = true;
-    print('getDashboard');
+    
     var response = await api.getDashboard();
     response = jsonDecode(response.body);
-    print(response);
+    
     data.value = response['data'];
     isLoading.value = false;
     return Future.value(true);
