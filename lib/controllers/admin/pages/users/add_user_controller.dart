@@ -21,6 +21,7 @@ class AddUserController extends GetxController {
 
     var result = await api.addUser(nama, nomor, alamat, password);
     var check = jsonDecode(result.body);
+    print(check);
     if (check['status'] == 200) {
       adminUsersController.get();
       Get.back();
@@ -35,7 +36,7 @@ class AddUserController extends GetxController {
     } else {
       Get.snackbar(
         'Error',
-        'User gagal ditambahkan',
+        check['message'],
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
