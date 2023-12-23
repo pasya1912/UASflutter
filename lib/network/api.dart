@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymapp/controllers/session_controller.dart';
