@@ -127,7 +127,7 @@ class Dashboard extends StatelessWidget {
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
         ),
-        Text('Expiry Date: $expiry'),
+        Text('Expired Date: $expiry'),
       ]);
 
   Widget NotSubscribeBanner() => Column(children: [
